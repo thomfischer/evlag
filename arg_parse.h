@@ -31,8 +31,9 @@ struct arguments {
 	size_t resize_factor;
 	int priority;
 	unsigned short polling_rate;
-	struct timeval delays[8192];
+	struct timeval queue[8192];
 	int counter;
+	int queue_size;
 };
 
 error_t parse_args(int argc, char **argv, struct arguments *arg);

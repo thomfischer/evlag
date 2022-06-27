@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 	args.priority = 20;
 	args.polling_rate = 2048;
 	args.counter = 0;
+	args.queue_size = 0;
 
 	if (parse_args(argc, argv, &args) < 0) {
 		perror("Failed to parse arguments");
@@ -51,13 +52,14 @@ int main(int argc, char **argv)
 	if(args.variance > 0)
 	{
 		struct timeval delay;
-		for(int i=0; i<8192; ++i )
+		int r;
+		for(int i=0; i<args.queue_size; ++i )
 		{
 			delay = args.delay;
-			int r = rand() % (args.variance * 2) - args.variance;
+			r = rand() % (args.variance * 2) - args.variance;
 			delay.tv_sec += r / 1000;
 			delay.tv_usec += r * 1000;
-			args.delays[i] = delay;
+			args.queue[i] = delay;
 		}
 	}
 

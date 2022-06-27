@@ -49,7 +49,7 @@ void *get_event(void *arg)
 		}
 
 		/* Add delay to input. */
-		timeradd(&ev.time, &data->args->delays[data->args->counter], &ev.time);
+		timeradd(&ev.time, &data->args->queue[data->args->counter], &ev.time);
 		data->args->counter++;
 
 		int rc_mut = pthread_mutex_lock(&fifo_mutex);

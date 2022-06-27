@@ -42,6 +42,7 @@ static struct argp_option options[] = {
 	{"device", 'd', "FILE", 0, "/dev/input/eventX"},
 	{"lag", 'l', "NUM", 0, "Set length of delay(ms)"},
 	{"variance", 'v', "NUM", 0, "Set variance of delay(ms)"},
+	{"queue_size", 'q', "NUM", 0, "Size of the delay queue (*1024)"},
 	{"buffer", 'b', "NUM", 0, "Set size of buffer(MiB)"},
 	{"Hz", 'h', "NUM", 0, "Set polling rate of uinput device(1 - 8192)"},
 	{"resize", 'r', "NUM", 0, "Set resize factor of full buffer"},
@@ -66,6 +67,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
 		break;
 	case 'v':
 		args->variance = strtol(arg, NULL, 10);
+		break;
+	case 'q':
+		args->queue_size = strtol(arg, NULL, 10) * 1024;
 		break;
 	case 'b':
 		args->buf_size = 1048576 * strtoull(arg, NULL, 10) /
