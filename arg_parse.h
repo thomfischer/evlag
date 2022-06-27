@@ -31,7 +31,7 @@ struct arguments {
 	size_t resize_factor;
 	int priority;
 	unsigned short polling_rate;
-	struct timeval queue[8192];
+	struct timeval *queue;
 	int counter;
 	int queue_size;
 };

@@ -48,6 +48,7 @@ int main(int argc, char **argv)
 	}
 
 	srand(time(0));
+	args.queue = malloc(sizeof(struct timeval) * args.queue_size);
 
 	if(args.variance > 0)
 	{
