@@ -48,8 +48,17 @@ void *get_event(void *arg)
 			}
 		}
 
+		/* Vary delay */
+		struct timeval delay = data->args->delay;
+		if(data->args->variance > 0)
+		{
+			delay.tv_sec += data->args->variance / 1000;
+			delay.tv_usec += data->args->variance * 1000;
+		}
+
+
 		/* Add delay to input. */
-		timeradd(&ev.time, &data->args->delay, &ev.time);
+		timeradd(&ev.time, &delay, &ev.time);
 
 		int rc_mut = pthread_mutex_lock(&fifo_mutex);
 

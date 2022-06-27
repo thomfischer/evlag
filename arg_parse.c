@@ -63,6 +63,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
 		args->delay.tv_sec = sec;
 		args->delay.tv_usec = (m_sec - sec * 1000) * 1000;
 		break;
+	case 'v':
+		args->variance = strtol(arg, NULL, 10);
+		break;
 	case 'b':
 		args->buf_size = 1048576 * strtoull(arg, NULL, 10) /
 			sizeof(struct input_event);

@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	args.event_file_name = NULL;
 	args.delay.tv_sec = 0;
 	args.delay.tv_usec = 0;
+	args.variance = 0;
 	args.buf_size = 0;
 	args.resize_factor = 2;
 	args.priority = 20;
@@ -44,6 +45,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
+	srand(time(0));
 
 	/* Set scheduler priority. */
 	struct sched_param sched;

@@ -25,6 +25,7 @@
 
 struct arguments {
 	struct timeval delay;
+	int variance;
 	char *event_file_name;
 	size_t buf_size;
 	size_t resize_factor;
