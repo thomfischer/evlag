@@ -52,8 +52,9 @@ void *get_event(void *arg)
 		struct timeval delay = data->args->delay;
 		if(data->args->variance > 0)
 		{
-			delay.tv_sec += data->args->variance / 1000;
-			delay.tv_usec += data->args->variance * 1000;
+			int r = rand();
+			delay.tv_sec += (r % data->args->variance) / 1000;
+			delay.tv_usec += (r % data->args->variance) * 1000;
 		}
 
 
