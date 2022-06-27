@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 	args.resize_factor = 2;
 	args.priority = 20;
 	args.polling_rate = 2048;
+	args.counter = 0;
 
 	if (parse_args(argc, argv, &args) < 0) {
 		perror("Failed to parse arguments");
@@ -46,6 +47,19 @@ int main(int argc, char **argv)
 	}
 
 	srand(time(0));
+
+	if(args.variance > 0)
+	{
+		struct timeval delay;
+		for(int i=0; i<8192; ++i )
+		{
+			delay = args.delay;
+			int r = rand() % (args.variance * 2) - args.variance;
+			delay.tv_sec += r / 1000;
+			delay.tv_usec += r * 1000;
+			args.delays[i] = delay;
+		}
+	}
 
 	/* Set scheduler priority. */
 	struct sched_param sched;
