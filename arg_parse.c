@@ -41,6 +41,7 @@ static char args_doc[] =
 static struct argp_option options[] = {
 	{"device", 'd', "FILE", 0, "/dev/input/eventX"},
 	{"lag", 'l', "NUM", 0, "Set length of delay(ms)"},
+	{"variance", 'v', "NUM", 0, "Set variance of delay(ms)"},
 	{"buffer", 'b', "NUM", 0, "Set size of buffer(MiB)"},
 	{"Hz", 'h', "NUM", 0, "Set polling rate of uinput device(1 - 8192)"},
 	{"resize", 'r', "NUM", 0, "Set resize factor of full buffer"},
